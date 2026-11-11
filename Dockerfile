@@ -1,8 +1,8 @@
-FROM ghcr.io/cirruslabs/flutter:stable AS build
+FROM ghcr.io/cirruslabs/flutter:3.47.7 AS build
 
 WORKDIR /app
 COPY pubspec.yaml pubspec.lock ./
-RUN flutter pub get
+RUN flutter --version && dart --version && flutter pub get
 
 COPY . .
 RUN flutter build web --release
