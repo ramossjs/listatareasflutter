@@ -26,6 +26,7 @@ jobs:
         run: |
           rm -rf Payload
           mkdir Payload
+          mkdir -p build/ios/ipa
           cp -R build/ios/iphoneos/Runner.app Payload/Runner.app
           zip -qry build/ios/ipa/listatareasflutter-unsigned.ipa Payload
 
