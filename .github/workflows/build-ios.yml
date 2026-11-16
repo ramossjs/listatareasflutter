@@ -24,11 +24,14 @@ jobs:
 
       - name: Package unsigned IPA
         run: |
-          rm -rf Payload
-          mkdir Payload
-          mkdir -p build/ios/ipa
-          cp -R build/ios/iphoneos/Runner.app Payload/Runner.app
-          zip -qry build/ios/ipa/listatareasflutter-unsigned.ipa Payload
+          ipa_dir="$GITHUB_WORKSPACE/build/ios/ipa"
+          payload_dir="$RUNNER_TEMP/ipa/Payload"
+          mkdir -p "$ipa_dir" "$payload_dir"
+          test -d "$GITHUB_WORKSPACE/build/ios/iphoneos/Runner.app"
+          cp -R "$GITHUB_WORKSPACE/build/ios/iphoneos/Runner.app" "$payload_dir/Runner.app"
+          cd "$RUNNER_TEMP/ipa"
+          zip -qry "$ipa_dir/listatareasflutter-unsigned.ipa" Payload
+          test -f "$ipa_dir/listatareasflutter-unsigned.ipa"
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
