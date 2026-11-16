@@ -20,6 +20,18 @@ Para comprobar la compilación local:
 flutter build web --release
 ```
 
+## Compilar iOS con GitHub Actions
+
+El workflow [`build-ios.yml`](./.github/workflows/build-ios.yml) compila la
+aplicación en un runner macOS y publica un archivo
+`listatareasflutter-unsigned.ipa` como artifact. Se ejecuta desde **Actions >
+Build iOS IPA > Run workflow**.
+
+Esta IPA no está firmada y no se puede instalar en un iPhone directamente.
+Para instalarla mediante sideloading hay que firmarla con un certificado y un
+provisioning profile de Apple, incluso usando una cuenta gratuita. La cuenta
+gratuita normalmente limita la instalación a siete días.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
